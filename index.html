@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in Action — Facilitator Guide | ATD South Carolina | June 5</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --teal: #0E7C7B;
+    --teal-light: #13A5A4;
+    --gold: #E8A317;
+    --gold-light: #F5C84A;
+    --slate: #2C3E50;
+    --mist: #E8F4F4;
+    --cream: #FAFAF7;
+    --white: #FFFFFF;
+    --text-dark: #1A1A2E;
+    --text-mid: #4A5568;
+    --text-light: #718096;
+    --beginner: #2E7D32;
+    --beginner-bg: #E8F5E9;
+    --intermediate: #1565C0;
+    --intermediate-bg: #E3F2FD;
+    --inperson: #5B2D8E;
+    --inperson-bg: #F3E5F5;
+    --online: #BF360C;
+    --online-bg: #FBE9E7;
+    --pace-p: #0E7C7B;
+    --pace-a: #E8A317;
+    --pace-c: #5B2D8E;
+    --pace-e: #C62828;
+    --border: rgba(14,124,123,0.15);
+    --shadow: 0 4px 24px rgba(13,27,42,0.10);
+    --shadow-lg: 0 12px 48px rgba(13,27,42,0.16);
+    --facilitator-accent: #E8A317;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── TOP HEADER ─────────────────────────────────────────── */
+  .site-header {
+    background: var(--navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    border-bottom: 3px solid var(--facilitator-accent);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-brand .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--teal-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .header-brand .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .header-brand .subtitle {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 2px;
+  }
+
+  .audience-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--facilitator-accent);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 6px;
+  }
+
+  /* ── HERO ───────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 50%, #1a3a4a 100%);
+    padding: 56px 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(232,163,23,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(14,124,123,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--facilitator-accent);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 24px 0 0;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+  }
+
+  .hero-meta-item .icon {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* ── PACE BAR ───────────────────────────────────────────── */
+  .pace-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+
+  .pace-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .pace-item {
+    flex: 1;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .pace-item:last-child { border-right: none; }
+  .pace-item:hover { background: var(--mist); }
+
+  .pace-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+  }
+
+  .pace-content .word {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  .pace-content .definition {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.4;
+  }
+
+  /* ── MAIN LAYOUT ────────────────────────────────────────── */
+  .main-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* ── NAV TABS ───────────────────────────────────────────── */
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
+  }
+
+  .nav-tab {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    border-radius: 6px 6px 0 0;
+  }
+
+  .nav-tab:hover { color: var(--gold); background: rgba(232,163,23,0.06); }
+  .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+
+  /* ── SECTIONS ───────────────────────────────────────────── */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.visible { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── MODULE CARD ────────────────────────────────────────── */
+  .module-card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-bottom: 36px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .module-header {
+    padding: 28px 36px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .module-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .module-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--navy);
+  }
+
+  .module-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .module-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .time-badge {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .pace-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .facilitator-tag {
+    font-size: 11px;
+    background: rgba(232,163,23,0.12);
+    color: #a07010;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(232,163,23,0.3);
+  }
+
+  .module-body {
+    padding: 32px 36px;
+  }
+
+  /* ── SECTION BLOCKS ─────────────────────────────────────── */
+  .block {
+    margin-bottom: 28px;
+  }
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .block-label-text {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+  }
+
+  .block-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .block-label-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    background: rgba(232,163,23,0.1);
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+
+  /* ── FACILITATOR NOTES ──────────────────────────────────── */
+  .facilitator-note {
+    background: #FFFBF0;
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 16px;
+  }
+
+  .facilitator-note .note-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .facilitator-note p, .facilitator-note li {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.65;
+  }
+
+  .facilitator-note ul, .facilitator-note ol {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+
+  .facilitator-note li { margin-bottom: 4px; }
+
+  /* ── GOVERNANCE CALLOUT ─────────────────────────────────── */
+  .governance-note {
+    background: linear-gradient(135deg, #0D1B2A 0%, #1a3a4a 100%);
+    border-left: 4px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .governance-note .gov-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .governance-note p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .governance-note p:last-child { margin-bottom: 0; }
+
+  .cue-box {
+    background: rgba(14,124,123,0.06);
+    border: 1px dashed var(--teal-light);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+  }
+
+  .cue-box .cue-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .cue-box p {
+    font-size: 13px;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  /* ── ESCAPE ROOM BOX ────────────────────────────────────── */
+  .escape-room-box {
+    background: linear-gradient(135deg, #1a0533 0%, #2d0a5e 100%);
+    border: 2px solid rgba(232,163,23,0.5);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .escape-room-box .er-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .escape-room-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .escape-room-box p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .escape-room-box .link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .escape-room-box a.er-link {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 9px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+
+  .escape-room-box a.er-link:hover { background: var(--gold-light); }
+
+  .escape-room-box .copy-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+  }
+
+  /* ── PADLET BOX ─────────────────────────────────────────── */
+  .padlet-box {
+    background: linear-gradient(135deg, #0a3d3d 0%, #0e5a5a 100%);
+    border: 2px solid rgba(14,124,123,0.5);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .padlet-box .pad-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--teal-light);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .padlet-box p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+
+  .padlet-box a.pad-link {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .padlet-box a.pad-link:hover { background: var(--teal-light); }
+
+  /* ── CALLOUT BOXES ──────────────────────────────────────── */
+  .callout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .callout-grid { grid-template-columns: 1fr; }
+  }
+
+  .callout-box {
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid transparent;
+  }
+
+  .callout-box .callout-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .callout-box .callout-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .callout-box .callout-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .callout-box ul { padding-left: 16px; }
+  .callout-box li { font-size: 13px; line-height: 1.6; margin-bottom: 4px; }
+  .callout-box p { font-size: 13px; line-height: 1.6; }
+
+  .callout-beginner { background: var(--beginner-bg); border-color: rgba(46,125,50,0.25); }
+  .callout-beginner .callout-title { color: var(--beginner); }
+  .callout-beginner .callout-icon { background: rgba(46,125,50,0.12); }
+
+  .callout-intermediate { background: var(--intermediate-bg); border-color: rgba(21,101,192,0.25); }
+  .callout-intermediate .callout-title { color: var(--intermediate); }
+  .callout-intermediate .callout-icon { background: rgba(21,101,192,0.12); }
+
+  /* ── ACTIVITY BLOCKS ────────────────────────────────────── */
+  .activity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .activity-grid { grid-template-columns: 1fr; }
+  }
+
+  .activity-box {
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid transparent;
+  }
+
+  .activity-box .activity-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .activity-box .activity-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .activity-box .activity-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .activity-box p, .activity-box li { font-size: 13px; line-height: 1.65; }
+  .activity-box ul { padding-left: 16px; margin-top: 6px; }
+  .activity-box li { margin-bottom: 5px; }
+
+  .activity-prompt {
+    background: rgba(0,0,0,0.04);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 13px !important;
+  }
+
+  .activity-inperson { background: var(--inperson-bg); border-color: rgba(91,45,142,0.2); }
+  .activity-inperson .activity-title { color: var(--inperson); }
+  .activity-inperson .activity-icon { background: rgba(91,45,142,0.12); }
+
+  .activity-online { background: var(--online-bg); border-color: rgba(191,54,12,0.2); }
+  .activity-online .activity-title { color: var(--online); }
+  .activity-online .activity-icon { background: rgba(191,54,12,0.12); }
+
+  /* ── TALKING POINTS ─────────────────────────────────────── */
+  .talking-points {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .talking-points h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+
+  .tp-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tp-item:last-child { border-bottom: none; }
+
+  .tp-bullet {
+    width: 20px; height: 20px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tp-text { font-size: 14px; line-height: 1.6; color: var(--text-dark); }
+  .tp-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; font-style: italic; }
+
+  /* ── OVERVIEW CARDS ─────────────────────────────────────── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .overview-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .overview-card .oc-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+  .overview-card h3 { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .overview-card p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ── TIMELINE ───────────────────────────────────────────── */
+  .timeline {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 36px;
+  }
+
+  .timeline h3 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 20px; color: var(--navy); }
+
+  .tl-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tl-row:last-child { border-bottom: none; }
+  .tl-time { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); min-width: 70px; font-weight: 600; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); margin-top: 4px; flex-shrink: 0; }
+  .tl-content .tl-title { font-weight: 600; font-size: 14px; color: var(--navy); }
+  .tl-content .tl-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+  .tl-facilitator { font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 10px; margin-left: auto; flex-shrink: 0; }
+
+  /* ── RESOURCES ──────────────────────────────────────────── */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .resource-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .resource-card code { display: block; background: var(--navy); color: var(--teal-light); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 14px 16px; border-radius: 8px; line-height: 1.7; white-space: pre-wrap; margin-top: 8px; }
+  .resource-card ul { padding-left: 16px; }
+  .resource-card li { font-size: 13px; line-height: 1.7; color: var(--text-dark); margin-bottom: 4px; }
+
+  /* ── PACE FRAMEWORK CARD ────────────────────────────────── */
+  .pace-full {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+
+  .pace-full h3 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 24px; color: var(--gold); }
+
+  .pace-rows { display: flex; flex-direction: column; gap: 16px; }
+
+  .pace-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 18px 22px;
+  }
+
+  .pace-row-letter { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1; width: 40px; flex-shrink: 0; text-align: center; }
+  .pace-row-content h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pace-row-content p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .pace-row-module { margin-left: auto; font-size: 11px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); padding: 3px 12px; border-radius: 10px; flex-shrink: 0; align-self: center; }
+
+  /* ── PROOF OF CONCEPT CARD ──────────────────────────────── */
+  .poc-card {
+    background: linear-gradient(135deg, var(--teal) 0%, #0a5f5e 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .poc-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+
+  .poc-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .poc-step { background: rgba(255,255,255,0.12); border-radius: 10px; padding: 16px; }
+  .poc-step .step-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-light); margin-bottom: 6px; display: block; }
+  .poc-step p { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.9); }
+
+  /* ── UTILITY ────────────────────────────────────────────── */
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  h2.section-heading { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--navy); margin-bottom: 24px; }
+  p.section-intro { font-size: 15px; color: var(--text-mid); margin-bottom: 28px; max-width: 700px; line-height: 1.7; }
+
+  @media print {
+    .site-header, .nav-tabs { display: none; }
+    .section { display: block !important; }
+    .module-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ STICKY HEADER ══════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <span class="label">ATD South Carolina</span>
+      <span class="title">AI in Action — Facilitator Guide</span>
+      <span class="subtitle">June 5 · 80 Minutes · Hybrid (Teams) · 3 Facilitators</span>
+    </div>
+    <div class="audience-badge">🎤 Facilitator Guide</div>
+  </div>
+</header>
+
+<!-- ══════════════════ HERO ════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">🎤 Facilitator Guide · June 5</span>
+    <h1>AI in Action:<br><span>Building Learning Assets</span><br>with Microsoft CoPilot</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="icon">⏱</div> 80 Minutes</div>
+      <div class="hero-meta-item"><div class="icon">🔀</div> Hybrid · Microsoft Teams</div>
+      <div class="hero-meta-item"><div class="icon">🎤</div> 3 Facilitators</div>
+      <div class="hero-meta-item"><div class="icon">👥</div> Mixed (Beginner–Intermediate)</div>
+      <div class="hero-meta-item"><div class="icon">🛠</div> Hands-On · Proof of Concept</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PACE FRAMEWORK BAR ═════════════════ -->
+<div class="pace-bar">
+  <div class="pace-bar-inner">
+    <div class="pace-item">
+      <div class="pace-letter" style="color:var(--pace-p)">P</div>
+      <div class="pace-content">
+        <span class="word" style="color:var(--pace-p)">Purpose</span>
+        <span class="definition">Define the learning need &amp; govern AI use responsibly</span>
+      </div>
+    </div>
+    <div class="pace-item">
+      <div class="pace-letter" style="color:var(--pace-a)">A</div>
+      <div class="pace-content">
+        <span class="word" style="color:var(--pace-a)">Augment</span>
+        <span class="definition">Use AI to generate &amp; enhance assets</span>
+      </div>
+    </div>
+    <div class="pace-item">
+      <div class="pace-letter" style="color:var(--pace-c)">C</div>
+      <div class="pace-content">
+        <span class="word" style="color:var(--pace-c)">Curate</span>
+        <span class="definition">Human review, refine, and iterate on AI output</span>
+      </div>
+    </div>
+    <div class="pace-item">
+      <div class="pace-letter" style="color:var(--pace-e)">E</div>
+      <div class="pace-content">
+        <span class="word" style="color:var(--pace-e)">Embed</span>
+        <span class="definition">Integrate AI into your design workflow</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ MAIN ════════════════════════════════ -->
+<div class="main-wrap">
+
+  <!-- ── NAV TABS ─────────────────────────────────────────── -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('overview', this)">Overview</button>
+    <button class="nav-tab" onclick="showTab('module1', this)">Module 1</button>
+    <button class="nav-tab" onclick="showTab('module2', this)">Module 2</button>
+    <button class="nav-tab" onclick="showTab('module3', this)">Module 3</button>
+    <button class="nav-tab" onclick="showTab('wrapup', this)">Wrap-Up</button>
+    <button class="nav-tab" onclick="showTab('resources', this)">Resources</button>
+  </div>
+
+  <!-- ──────── OVERVIEW ──────────────────────────────────── -->
+  <div id="tab-overview" class="section visible">
+    <h2 class="section-heading">Session Overview</h2>
+    <p class="section-intro">This 80-minute hybrid session equips talent development professionals to build real AI-assisted learning assets using Microsoft CoPilot and the Microsoft 365 suite, grounded in the <strong>PACE framework</strong>. Participants leave with a proof of concept and a workflow they can implement immediately.</p>
+
+    <!-- ── ESCAPE ROOM ACTIVITY ── -->
+    <div class="escape-room-box">
+      <span class="er-label">🔐 Opening Activity — ATD SC Escape Room</span>
+      <h3>Blackwood Manor Escape Room</h3>
+      <p>Begin the session by sharing the escape room link in the MS Teams chat. This is an opening engagement activity for all participants — both in-person and virtual. In-person participants can work the puzzles with their table partners. Virtual participants engage individually and share reactions in the Teams chat or on Padlet.</p>
+      <p>Copy the link below and paste it directly into the MS Teams meeting chat before the session starts.</p>
+      <div class="link-row">
+        <a href="https://kmcclure76.github.io/ATD-SC-80yrs/" target="_blank" class="er-link">🔐 Open Escape Room</a>
+        <span class="copy-hint">Link: https://kmcclure76.github.io/ATD-SC-80yrs/</span>
+      </div>
+    </div>
+
+    <!-- ── PADLET ── -->
+    <div class="padlet-box">
+      <span class="pad-label">📌 Padlet — Shared Collaboration Space</span>
+      <p>Post the Padlet link in the MS Teams chat at the start of the session. All participants — in-person and virtual — can use the Padlet to share responses, reflections, and work throughout the session. Note: In-person participants will have their microphones and speakers muted to prevent audio feedback with the virtual stream. Padlet is their primary channel for sharing with the broader group.</p>
+      <a href="https://padlet.com/kmcclure76/atd-sc-80th-year-celebration-g9zkafwndiyn1xvk" target="_blank" class="pad-link">📌 Open Padlet</a>
+      <span style="display:inline-block;margin-left:12px;font-size:12px;color:rgba(255,255,255,0.5);font-style:italic;">Link: https://padlet.com/kmcclure76/atd-sc-80th-year-celebration-g9zkafwndiyn1xvk</span>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <span class="oc-icon">🎯</span>
+        <h3>Session Goals</h3>
+        <p>Build a practical AI workflow. Create at least one complete learning asset. Understand governance, integration, and human review principles.</p>
+      </div>
+      <div class="overview-card">
+        <span class="oc-icon">👥</span>
+        <h3>Audience</h3>
+        <p>Instructional designers, LX designers, training specialists, facilitators, L&D consultants, and coaches. Mixed beginner-to-intermediate AI experience.</p>
+      </div>
+      <div class="overview-card">
+        <span class="oc-icon">🛠</span>
+        <h3>Tools Used</h3>
+        <p><strong>Microsoft CoPilot</strong> (AI prompting, content generation) integrated with <strong>Microsoft 365</strong> (Word, PowerPoint, Teams). Participants use their organizational accounts.</p>
+      </div>
+      <div class="overview-card">
+        <span class="oc-icon">📦</span>
+        <h3>Takeaways</h3>
+        <p>Completed proof-of-concept asset, PACE framework reference card, and prompt template library.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <h3>Session At-a-Glance</h3>
+      <div class="tl-row">
+        <span class="tl-time">0:00–0:05</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-title">Welcome &amp; Framing</div>
+          <div class="tl-desc">Escape room activity, introductions, session goals, hybrid logistics, PACE framework intro</div>
+        </div>
+        <span class="tl-facilitator chip" style="background:rgba(14,124,123,0.1);color:var(--teal)">All 3</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">0:05–0:27</span>
+        <div class="tl-dot" style="background:var(--pace-p)"></div>
+        <div class="tl-content">
+          <div class="tl-title">Module 1 — Set the Stage</div>
+          <div class="tl-desc">AI governance · responsible use · visual asset creation</div>
+        </div>
+        <span class="tl-facilitator chip" style="background:rgba(14,124,123,0.1);color:var(--pace-p)">Facilitator A</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">0:27–0:49</span>
+        <div class="tl-dot" style="background:var(--pace-a)"></div>
+        <div class="tl-content">
+          <div class="tl-title">Module 2 — Build the Asset</div>
+          <div class="tl-desc">AI integration · prompt engineering · written asset creation</div>
+        </div>
+        <span class="tl-facilitator chip" style="background:rgba(232,163,23,0.15);color:#b07d00">Facilitator B</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">0:49–1:11</span>
+        <div class="tl-dot" style="background:var(--pace-c)"></div>
+        <div class="tl-content">
+          <div class="tl-title">Module 3 — Proof of Concept</div>
+          <div class="tl-desc">Human review · synthesis · full PACE embed</div>
+        </div>
+        <span class="tl-facilitator chip" style="background:rgba(91,45,142,0.1);color:var(--inperson)">Facilitator C</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">1:11–1:20</span>
+        <div class="tl-dot" style="background:var(--navy)"></div>
+        <div class="tl-content">
+          <div class="tl-title">Wrap-Up &amp; Framework Handoff</div>
+          <div class="tl-desc">PACE summary · action commitments · Q&amp;A</div>
+        </div>
+        <span class="tl-facilitator chip" style="background:rgba(14,124,123,0.1);color:var(--teal)">All 3</span>
+      </div>
+    </div>
+
+    <div class="pace-full">
+      <h3>The PACE Framework</h3>
+      <div class="pace-rows">
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-p)">P</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Purpose</h4>
+            <p>Define the learning need clearly before turning to AI. Understand governance, ethical use, and organizational guidelines. Ask: <em>What do learners need? What does responsible AI use look like here?</em></p>
+          </div>
+          <div class="pace-row-module">Module 1</div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-a)">A</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Augment</h4>
+            <p>Use Microsoft CoPilot to generate, enhance, and accelerate asset creation. What you put in is what you get out — specificity in prompts drives quality output.</p>
+          </div>
+          <div class="pace-row-module">Module 2</div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-c)">C</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Curate</h4>
+            <p>Human review is non-negotiable. Review AI output critically. Refine, fact-check, align to brand and learning objectives. Iterate until the asset is yours.</p>
+          </div>
+          <div class="pace-row-module">Module 3</div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-e)">E</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Embed</h4>
+            <p>Integrate the workflow into your design practice. Map AI tools to your existing process (ADDIE/SAM). Build repeatable, scalable habits around AI-assisted design.</p>
+          </div>
+          <div class="pace-row-module">Wrap-Up</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facilitator-note">
+      <div class="note-label">🎤 Facilitator Coordination Notes</div>
+      <ul>
+        <li><strong>Facilitator A</strong> leads Module 1 (AI Governance + Visual Assets). Owns the "Purpose" layer of PACE.</li>
+        <li><strong>Facilitator B</strong> leads Module 2 (AI Integration + Written Assets + Prompt Engineering). Owns the "Augment" layer.</li>
+        <li><strong>Facilitator C</strong> leads Module 3 (Synthesis + Human Review + Proof of Concept). Owns "Curate" and bridges to "Embed."</li>
+        <li>All three introduce themselves briefly during the Welcome (1 min each). Transitions between modules should be warm handoffs, not cold cuts.</li>
+        <li>Monitor Teams chat throughout — one facilitator should be designated as the <strong>online producer</strong> to watch for questions and support remote participants.</li>
+        <li>Keep 5 minutes of buffer in each module. If an activity runs long, reduce debrief — never cut the activity.</li>
+        <li><strong>Hybrid logistics reminder:</strong> In-person participants will have microphones and speakers muted to prevent audio feedback with the virtual stream. Direct in-person participants to Padlet and the Teams chat for sharing with the broader group. Virtual participants engage through the Teams chat and Padlet.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ──────── MODULE 1 ───────────────────────────────────── -->
+  <div id="tab-module1" class="section">
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-number" style="color:var(--pace-p)">Module 1 · PACE: Purpose</span>
+          <div class="module-title"><em>Set the Stage</em> — AI Governance &amp; Visual Assets</div>
+        </div>
+        <div class="module-meta">
+          <span class="time-badge">⏱ 0:05 – 0:27 · 22 min</span>
+          <span class="pace-badge" style="background:rgba(14,124,123,0.1);color:var(--pace-p)">P — Purpose</span>
+          <span class="facilitator-tag">🎤 Facilitator A</span>
+        </div>
+      </div>
+      <div class="module-body">
+
+        <!-- Governance Framing Note -->
+        <div class="governance-note">
+          <span class="gov-label">📋 AI Governance Context — Facilitator Note</span>
+          <p>A foundational principle of responsible AI use in any organization is working within your established AI governance framework and the technology infrastructure your organization provides. How we use AI is shaped by what our organization has approved, vetted for security, and made available to us — and that is a feature, not a limitation.</p>
+          <p>Today we are working with <strong>Microsoft CoPilot</strong> because it is the AI tool available within our current organizational environment. This is a deliberate, governance-aligned choice. Using the tools your organization sanctions means your work is compliant, secure, and scalable — and it models exactly the kind of responsible AI practice we are here to discuss.</p>
+          <p>As you facilitate this module, use this framing to set the tone: the question is not "which AI tool is best in the world" — it is "which AI tool is right for my context, and am I using it responsibly within my organization's guidelines?"</p>
+        </div>
+
+        <!-- Objectives -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Learning Objectives</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="talking-points">
+            <div class="tp-item"><div class="tp-bullet">1</div><div class="tp-text">Identify at least two organizational AI governance principles that apply to learning asset creation.</div></div>
+            <div class="tp-item"><div class="tp-bullet">2</div><div class="tp-text">Write a purposeful, specific prompt in Microsoft CoPilot and generate a visual asset concept.</div></div>
+            <div class="tp-item"><div class="tp-bullet">3</div><div class="tp-text">Connect prompt quality to output quality using the "what you put in is what you get out" principle.</div></div>
+          </div>
+        </div>
+
+        <!-- Content Block -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Content Delivery</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">10 min</div>
+          </div>
+
+          <div class="facilitator-note">
+            <div class="note-label">🎤 Facilitator A — Script Notes</div>
+            <p>Open with energy and a grounding question to the room (in-person) and chat (online). Frame this as the "why before the how."</p>
+          </div>
+
+          <div class="cue-box">
+            <div class="cue-label">💬 Opening Prompt to Room</div>
+            <p>"Before we dive into the tools — raise your hand or drop it in the chat: how many of you have already used AI for something at work in the last 30 days? Great. And how many of you had a governance policy guiding that use?" [Pause for responses.] "That gap is exactly where we're starting today."</p>
+          </div>
+
+          <div class="talking-points">
+            <h4>Talking Points — AI Governance</h4>
+            <div class="tp-item">
+              <div class="tp-bullet">1</div>
+              <div class="tp-text">
+                What is AI governance in L&amp;D?
+                <div class="tp-sub">Define it simply: the organizational and ethical guardrails that guide how, when, and for what we use AI. This includes data privacy, copyright, accuracy, transparency with learners, and bias awareness.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">2</div>
+              <div class="tp-text">
+                Why governance matters for our work
+                <div class="tp-sub">AI doesn't inherently know your organization's values, brand voice, or sensitive topics. We are the guardrail. A governance mindset means we use AI as a collaborator, not a replacement decision-maker.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">3</div>
+              <div class="tp-text">
+                Responsible AI use checklist (quick 3-point)
+                <div class="tp-sub">(a) Never input confidential or PII data into AI tools. (b) Always disclose AI-assisted content when your org policy requires it. (c) You are responsible for the final output — AI is a tool, you are the author.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">4</div>
+              <div class="tp-text">
+                Introducing Microsoft CoPilot — your AI collaborator today
+                <div class="tp-sub">Brief orientation: Microsoft CoPilot, integrated into Microsoft 365. What it does well for L&amp;D — content drafting, script writing, document creation, design briefs. Today we're using it alongside Microsoft 365 tools (Word, PowerPoint) to build visual and written learning assets.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cue-box">
+            <div class="cue-label">⚡ Energy Cue — Transition to Prompt Engineering</div>
+            <p>"Now that we know WHY governance matters, let's talk about the thing that will make or break your AI results: your prompt. Think of CoPilot like a really smart new hire — the more specific your brief, the better the work you get back."</p>
+          </div>
+
+          <div class="talking-points">
+            <h4>Talking Points — Prompt Engineering Foundations</h4>
+            <div class="tp-item">
+              <div class="tp-bullet">5</div>
+              <div class="tp-text">
+                What you put in is what you get out
+                <div class="tp-sub">Vague prompt = vague output. "Write me a training activity" vs "Write a 5-minute warm-up activity for a virtual onboarding session for new healthcare employees, age 25–40, focused on safety culture." Show both side-by-side if possible.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">6</div>
+              <div class="tp-text">
+                The four elements of a strong prompt
+                <div class="tp-sub"><strong>Role</strong> (what expertise CoPilot should apply) + <strong>Task</strong> (what you want) + <strong>Context</strong> (audience, constraints) + <strong>Format</strong> (how you want it delivered). Acronym: <strong>RTCF</strong>.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">7</div>
+              <div class="tp-text">
+                Different prompts for different assets
+                <div class="tp-sub">A prompt for an image concept looks different from a prompt for a facilitator guide. Today we'll practice both. The key is adapting your RTCF to the asset type.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Differentiated Support -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Differentiated Support</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="callout-grid">
+            <div class="callout-box callout-beginner">
+              <div class="callout-header">
+                <div class="callout-icon">🟢</div>
+                <div class="callout-title">Beginner Track</div>
+              </div>
+              <p>Use this ready-made template prompt to get started in CoPilot:</p>
+              <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;background:rgba(46,125,50,0.08);padding:10px 12px;border-radius:8px;line-height:1.7;">
+                "You are a learning designer. Create a visual learning asset concept for a [TOPIC] training aimed at [AUDIENCE]. Describe the layout, key visual elements, colors, and icons to use. Format it as a design brief I can use in PowerPoint."
+              </p>
+              <p style="margin-top:8px;font-size:12px;color:var(--beginner);">Fill in the brackets — that's your first prompt!</p>
+            </div>
+            <div class="callout-box callout-intermediate">
+              <div class="callout-header">
+                <div class="callout-icon">🔵</div>
+                <div class="callout-title">Intermediate Track</div>
+              </div>
+              <p>Build your own RTCF prompt from scratch:</p>
+              <ul>
+                <li><strong>Role:</strong> Define what expertise CoPilot should bring</li>
+                <li><strong>Task:</strong> Be specific about the asset type and purpose</li>
+                <li><strong>Context:</strong> Include audience, modality, constraints</li>
+                <li><strong>Format:</strong> Ask for a design brief, element list, or color palette</li>
+              </ul>
+              <p style="margin-top:8px;font-size:12px;color:var(--intermediate);">Try iterating 2–3 times and compare outputs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Activity</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">8 min</div>
+          </div>
+
+          <div class="facilitator-note">
+            <div class="note-label">🎤 Activity Setup</div>
+            <p>Have participants open Microsoft CoPilot. In-person: project a sample prompt on screen. Online: post the template prompt in Teams chat. Give a 60-second demo of submitting a prompt and reviewing output before releasing them to work.</p>
+          </div>
+
+          <p style="margin-bottom:14px;font-size:14px;color:var(--text-dark);"><strong>Task:</strong> Use CoPilot to generate a design brief for a visual learning asset related to a topic from your own work. Then take that brief into PowerPoint and begin building the visual.</p>
+
+          <div class="activity-grid">
+            <div class="activity-box activity-inperson">
+              <div class="activity-header">
+                <div class="activity-icon">🏢</div>
+                <div class="activity-title">In-Person — Pair &amp; Share</div>
+              </div>
+              <p>After 5 minutes of individual work, turn to the person next to you. Share:</p>
+              <ul>
+                <li>What topic did you choose and why?</li>
+                <li>What did your prompt look like?</li>
+                <li>How close was CoPilot's output to what you imagined?</li>
+                <li>What would you change in your next prompt?</li>
+              </ul>
+              <div class="activity-prompt">💬 "Compare your two outputs side-by-side. What's different? What does that tell you about prompting?"</div>
+            </div>
+            <div class="activity-box activity-online">
+              <div class="activity-header">
+                <div class="activity-icon">💻</div>
+                <div class="activity-title">Online (Teams) — Padlet Reflection</div>
+              </div>
+              <p>After generating your output, take 3 minutes to reflect and post on Padlet:</p>
+              <ul>
+                <li>What surprised you about the output?</li>
+                <li>Where did CoPilot nail it? Where did it miss?</li>
+                <li>What one word would you add to your prompt to improve it?</li>
+              </ul>
+              <div class="activity-prompt">💬 Post your one word on Padlet — the facilitator will read a few aloud to the room.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Debrief -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Debrief + PACE Connection</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">4 min</div>
+          </div>
+          <div class="cue-box">
+            <div class="cue-label">💬 Debrief Script</div>
+            <p>"What we just did was the P in PACE — Purpose. You defined a learning need, you started with governance in mind, and you gave CoPilot a purposeful brief. That foundation changes everything about what comes out. In Module 2, Facilitator B is going to take you into the A — Augment — where we go deeper into integration and start building your written assets."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────── MODULE 2 ───────────────────────────────────── -->
+  <div id="tab-module2" class="section">
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-number" style="color:var(--pace-a)">Module 2 · PACE: Augment</span>
+          <div class="module-title"><em>Build the Asset</em> — AI Integration &amp; Written Assets</div>
+        </div>
+        <div class="module-meta">
+          <span class="time-badge">⏱ 0:27 – 0:49 · 22 min</span>
+          <span class="pace-badge" style="background:rgba(232,163,23,0.12);color:#b07d00">A — Augment</span>
+          <span class="facilitator-tag">🎤 Facilitator B</span>
+        </div>
+      </div>
+      <div class="module-body">
+
+        <!-- Objectives -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Learning Objectives</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="talking-points">
+            <div class="tp-item"><div class="tp-bullet">1</div><div class="tp-text">Explain how Microsoft CoPilot and Microsoft 365 work together in an integrated L&amp;D asset creation workflow.</div></div>
+            <div class="tp-item"><div class="tp-bullet">2</div><div class="tp-text">Apply the RTCF prompt framework to produce a written learning asset (facilitator guide excerpt, podcast script intro, or video script scene).</div></div>
+            <div class="tp-item"><div class="tp-bullet">3</div><div class="tp-text">Recognize the value of specificity and iteration in prompting for different asset types.</div></div>
+          </div>
+        </div>
+
+        <!-- Content Block -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Content Delivery</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">8 min</div>
+          </div>
+
+          <div class="cue-box">
+            <div class="cue-label">💬 Opening Handoff from Facilitator A</div>
+            <p>"You've just built your first AI-assisted visual concept. Now we're going to do something that multiplies that work — we're going to use CoPilot and Microsoft 365 together, not just side by side."</p>
+          </div>
+
+          <div class="talking-points">
+            <h4>Talking Points — AI Integration (CoPilot + Microsoft 365)</h4>
+            <div class="tp-item">
+              <div class="tp-bullet">1</div>
+              <div class="tp-text">
+                How CoPilot and Microsoft 365 work together
+                <div class="tp-sub">CoPilot is your thinking and writing engine. Microsoft 365 (Word, PowerPoint) is your design and publishing engine. The handoff: CoPilot generates structured content (a script, an outline, a design brief) → you bring that into Word or PowerPoint → Microsoft 365 formats, visualizes, and makes it production-ready.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">2</div>
+              <div class="tp-text">
+                Why using a framework matters
+                <div class="tp-sub">Without a framework, AI-assisted design becomes random. PACE gives us a consistent structure. ADDIE/SAM logic still applies — AI accelerates the steps, it doesn't replace them. Think of AI as a turbo button on your existing process.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">3</div>
+              <div class="tp-text">
+                Prompt specificity for written assets
+                <div class="tp-sub">Written assets need more context than visual ones. For a facilitator guide: specify timing, audience, tone, learning objectives, and format. For a video script: specify duration, speaker role, scene description, call to action. For a podcast intro: specify host voice, episode topic, hook style.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">4</div>
+              <div class="tp-text">
+                Prompt iteration is not failure — it's design
+                <div class="tp-sub">Your first prompt output is a first draft. Expert AI users iterate 2–5 times. Each iteration is a design decision. "Add a more conversational tone." "Shorten by 30%." "Make the opening line a question." This is part of the workflow, not a sign something went wrong.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cue-box">
+            <div class="cue-label">⚡ Live Demo Cue (Optional — 2 min)</div>
+            <p>Open CoPilot and share your screen. Paste a prompt for a video script scene. Show the output live. Then say: "Watch what happens when I add one more line of context." Add "The tone should be warm, direct, and accessible for first-time managers" and regenerate. Discuss the difference.</p>
+          </div>
+        </div>
+
+        <!-- Differentiated Support -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Differentiated Support — Written Asset Prompts</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="callout-grid">
+            <div class="callout-box callout-beginner">
+              <div class="callout-header">
+                <div class="callout-icon">🟢</div>
+                <div class="callout-title">Beginner Track</div>
+              </div>
+              <p>Choose one template and fill in the brackets:</p>
+              <p style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(46,125,50,0.08);padding:10px;border-radius:8px;line-height:1.8;">
+                <strong>Facilitator Guide:</strong><br>"Write a 2-minute facilitator guide intro for a [TOPIC] session for [AUDIENCE]. Include a welcome, the session goal, and a warm-up question."<br><br>
+                <strong>Podcast Script:</strong><br>"Write a 60-second podcast intro for an episode about [TOPIC]. The tone is [TONE]. Start with a hook."<br><br>
+                <strong>Video Script:</strong><br>"Write a 90-second video script about [TOPIC] for [AUDIENCE]. Include an opening, 3 key points, and a call to action."
+              </p>
+            </div>
+            <div class="callout-box callout-intermediate">
+              <div class="callout-header">
+                <div class="callout-icon">🔵</div>
+                <div class="callout-title">Intermediate Track</div>
+              </div>
+              <p>Write your own RTCF prompt for your chosen asset. Then:</p>
+              <ul>
+                <li>Run it once and evaluate the output against your intended learning objective</li>
+                <li>Identify one specific gap in the output</li>
+                <li>Add a refinement line to your prompt and regenerate</li>
+                <li>Compare version 1 and version 2 — what changed and why?</li>
+              </ul>
+              <p style="margin-top:8px;font-size:12px;color:var(--intermediate);">Bonus: Take your written output into Word or PowerPoint and format it as a designed document.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Activity</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">10 min</div>
+          </div>
+
+          <div class="facilitator-note">
+            <div class="note-label">🎤 Activity Setup</div>
+            <p>Post the three template prompts in Teams chat before releasing to activity. Remind participants they can continue working on their Module 1 topic OR start fresh. The goal is one written asset draft — not perfection.</p>
+          </div>
+
+          <p style="margin-bottom:14px;font-size:14px;color:var(--text-dark);"><strong>Task:</strong> Choose one written asset type — facilitator guide excerpt, podcast script intro, or video script scene. Use your CoPilot prompt to generate a first draft. Iterate at least once.</p>
+
+          <div class="activity-grid">
+            <div class="activity-box activity-inperson">
+              <div class="activity-header">
+                <div class="activity-icon">🏢</div>
+                <div class="activity-title">In-Person — Pair &amp; Share</div>
+              </div>
+              <p>After 6 minutes of drafting, swap drafts with your partner. Give each other:</p>
+              <ul>
+                <li>One thing that worked well in the draft</li>
+                <li>One suggestion for making the prompt more specific</li>
+              </ul>
+              <div class="activity-prompt">💬 "Could you tell this was AI-generated? What would you do to make it sound more like you or your organization?"</div>
+            </div>
+            <div class="activity-box activity-online">
+              <div class="activity-header">
+                <div class="activity-icon">💻</div>
+                <div class="activity-title">Online (Teams) — Self-Assessment + Padlet</div>
+              </div>
+              <p>After drafting, rate your output against these 3 criteria in your notes:</p>
+              <ul>
+                <li>✅ <strong>Accuracy:</strong> Is the content factually correct for your context?</li>
+                <li>✅ <strong>Alignment:</strong> Does it match your intended learning objective?</li>
+                <li>✅ <strong>Voice:</strong> Does it sound like it belongs to your organization?</li>
+              </ul>
+              <div class="activity-prompt">💬 Post your lowest-rated criterion on Padlet and what you'll do to improve it. Then regenerate and see what changes.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Debrief -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Debrief + PACE Connection</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">4 min</div>
+          </div>
+          <div class="cue-box">
+            <div class="cue-label">💬 Debrief Script</div>
+            <p>"You've now Augmented — you used AI to generate something you couldn't have produced in 10 minutes manually. But here's the thing: augmentation without curation is risky. In Module 3, Facilitator C is going to show you the step that separates professionals from prompts — the human review, the synthesis, and how you turn these two assets into a proof of concept you can actually show people."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────── MODULE 3 ───────────────────────────────────── -->
+  <div id="tab-module3" class="section">
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-number" style="color:var(--pace-c)">Module 3 · PACE: Curate + Embed</span>
+          <div class="module-title"><em>Proof of Concept</em> — Human Review &amp; Workflow Integration</div>
+        </div>
+        <div class="module-meta">
+          <span class="time-badge">⏱ 0:49 – 1:11 · 22 min</span>
+          <span class="pace-badge" style="background:rgba(91,45,142,0.1);color:var(--inperson)">C+E — Curate · Embed</span>
+          <span class="facilitator-tag">🎤 Facilitator C</span>
+        </div>
+      </div>
+      <div class="module-body">
+
+        <!-- Objectives -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Learning Objectives</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="talking-points">
+            <div class="tp-item"><div class="tp-bullet">1</div><div class="tp-text">Apply a human review process to AI-generated content before finalizing a deliverable.</div></div>
+            <div class="tp-item"><div class="tp-bullet">2</div><div class="tp-text">Combine a visual asset and a written asset into a cohesive mini proof of concept.</div></div>
+            <div class="tp-item"><div class="tp-bullet">3</div><div class="tp-text">Map the PACE framework to an existing ADDIE or SAM design workflow.</div></div>
+          </div>
+        </div>
+
+        <!-- Content Block -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Content Delivery</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">6 min</div>
+          </div>
+
+          <div class="talking-points">
+            <h4>Talking Points — Human Review &amp; Workflow Integration</h4>
+            <div class="tp-item">
+              <div class="tp-bullet">1</div>
+              <div class="tp-text">
+                Human review is non-negotiable
+                <div class="tp-sub">AI does not know your learners, your culture, your organizational context, or your legal constraints. It can't tell you if a scenario is inappropriate for your audience or if a stat is out of date. You are the subject matter expert. You are the final editor.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">2</div>
+              <div class="tp-text">
+                What to review in AI-generated L&amp;D content
+                <div class="tp-sub">Accuracy (facts, dates, stats). Alignment (does it achieve the learning objective?). Tone (brand voice, inclusion, accessibility). Completeness (is anything missing?). Attribution (did AI pull from outdated sources?)</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">3</div>
+              <div class="tp-text">
+                The Curate → Embed cycle
+                <div class="tp-sub">Curation isn't a one-time step — it's iterative, like SAM. You review, you refine, you re-prompt if needed. Once you're satisfied, Embed: plug it into your workflow template, your LMS, your facilitation plan. That's when AI effort becomes a reusable organizational asset.</div>
+              </div>
+            </div>
+            <div class="tp-item">
+              <div class="tp-bullet">4</div>
+              <div class="tp-text">
+                Mapping PACE to ADDIE / SAM
+                <div class="tp-sub">Purpose → Analysis &amp; Design phases. Augment → Development. Curate → Review &amp; Evaluation. Embed → Implementation. AI doesn't replace the model — it compresses the timeline within it.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Differentiated Support -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Differentiated Support — POC Scope</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="callout-grid">
+            <div class="callout-box callout-beginner">
+              <div class="callout-header">
+                <div class="callout-icon">🟢</div>
+                <div class="callout-title">Beginner Track — POC Goal</div>
+              </div>
+              <p>Your proof of concept = one refined asset:</p>
+              <ul>
+                <li>Review your visual concept OR your written draft</li>
+                <li>Make 2–3 edits that make it feel like <em>your</em> work, not AI's</li>
+                <li>Be ready to share: "I used AI to [do X] and I changed [Y] because [Z]"</li>
+              </ul>
+              <p style="margin-top:8px;font-size:12px;color:var(--beginner);">That's a complete, shareable proof of concept.</p>
+            </div>
+            <div class="callout-box callout-intermediate">
+              <div class="callout-header">
+                <div class="callout-icon">🔵</div>
+                <div class="callout-title">Intermediate Track — POC Goal</div>
+              </div>
+              <p>Your proof of concept = a paired asset set:</p>
+              <ul>
+                <li>Combine your Module 1 visual + Module 2 written into one cohesive asset</li>
+                <li>Ensure they share the same topic, tone, and intended audience</li>
+                <li>Apply your PACE framework mapping — note which step each asset represents</li>
+                <li>Identify: where would this fit in your real workflow next week?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- POC Card -->
+        <div class="poc-card">
+          <h3>🏗 Proof of Concept Activity <span style="font-size:14px;font-weight:400;font-family:'DM Sans',sans-serif;">(12 min)</span></h3>
+          <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6;">Bring your Module 1 and Module 2 work together. Apply your human review. Refine. Connect it to your real workflow.</p>
+          <div class="poc-steps">
+            <div class="poc-step"><span class="step-num">STEP 1</span><p>Review your visual asset — edit anything that doesn't fit your context or voice</p></div>
+            <div class="poc-step"><span class="step-num">STEP 2</span><p>Review your written asset — check accuracy, alignment, and tone</p></div>
+            <div class="poc-step"><span class="step-num">STEP 3</span><p>Connect them: do both serve the same learning purpose?</p></div>
+            <div class="poc-step"><span class="step-num">STEP 4</span><p>Write one sentence: "With AI, I built ___. I can use this for ___ at work."</p></div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Activity</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">12 min</div>
+          </div>
+          <div class="activity-grid">
+            <div class="activity-box activity-inperson">
+              <div class="activity-header">
+                <div class="activity-icon">🏢</div>
+                <div class="activity-title">In-Person — Pair &amp; Share</div>
+              </div>
+              <p>After 7 minutes of individual refinement, share your POC with your partner:</p>
+              <ul>
+                <li>Show them your paired assets</li>
+                <li>Share your "I built ___ / I'll use it for ___" statement</li>
+                <li>Tell them: what one thing would you do differently next time?</li>
+              </ul>
+              <div class="activity-prompt">💬 "Where in your current workflow could you insert this PACE process?"</div>
+            </div>
+            <div class="activity-box activity-online">
+              <div class="activity-header">
+                <div class="activity-icon">💻</div>
+                <div class="activity-title">Online (Teams) — Framework Completion + Padlet</div>
+              </div>
+              <p>Complete your PACE Framework Card in your notes:</p>
+              <ul>
+                <li><strong>P —</strong> What learning need would I start with?</li>
+                <li><strong>A —</strong> Which AI tools fit my workflow?</li>
+                <li><strong>C —</strong> What's my review process?</li>
+                <li><strong>E —</strong> Where does this asset live in my org?</li>
+              </ul>
+              <div class="activity-prompt">💬 Post your "I built ___ / I'll use it for ___" statement on Padlet.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Debrief -->
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Debrief + PACE Connection</div>
+            <div class="block-label-line"></div>
+            <div class="block-label-time">4 min</div>
+          </div>
+          <div class="cue-box">
+            <div class="cue-label">💬 Debrief Script</div>
+            <p>"Look at what you built in 60 minutes. A visual asset. A written asset. A human-reviewed, AI-assisted proof of concept. That's not a demo — that's a workflow. You now have PACE. And in the next 9 minutes, we're going to make sure you leave with everything you need to take it back and use it."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────── WRAP-UP ─────────────────────────────────────── -->
+  <div id="tab-wrapup" class="section">
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-number" style="color:var(--navy)">Closing · All Facilitators</span>
+          <div class="module-title"><em>Wrap-Up</em> — Framework Handoff &amp; Action Commitment</div>
+        </div>
+        <div class="module-meta">
+          <span class="time-badge">⏱ 1:11 – 1:20 · 9 min</span>
+          <span class="facilitator-tag">🎤 All 3</span>
+        </div>
+      </div>
+      <div class="module-body">
+
+        <div class="facilitator-note">
+          <div class="note-label">🎤 Closing Flow — All Three Facilitators</div>
+          <ul>
+            <li><strong>Facilitator C</strong> wraps Module 3 and transitions to closing (1 min)</li>
+            <li><strong>Facilitator A</strong> leads the PACE framework recap and connects to governance (2 min)</li>
+            <li><strong>Facilitator B</strong> leads the action commitment prompt (2 min)</li>
+            <li><strong>All three</strong> take Q&amp;A together (4 min)</li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">PACE Recap (2 min)</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="cue-box">
+            <div class="cue-label">💬 Script — Facilitator A</div>
+            <p>"You started today with a question about governance — and you're leaving with a framework. PACE isn't a rigid checklist — it's a thinking structure. Purpose grounds you. Augment accelerates you. Curate protects you. Embed sustains you. That's responsible, scalable AI-assisted design."</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Action Commitment (2 min)</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="cue-box">
+            <div class="cue-label">💬 Script — Facilitator B</div>
+            <p>"Before we go to Q&amp;A, I want everyone to write down — or post on Padlet — one AI-assisted learning asset you will build in the next 30 days using PACE. Not plan. Not explore. Build. In-person folks, tell your partner. Online folks, post it on Padlet. We'll read a few aloud."</p>
+          </div>
+          <div class="activity-grid">
+            <div class="activity-box activity-inperson">
+              <div class="activity-header"><div class="activity-icon">🏢</div><div class="activity-title">In-Person</div></div>
+              <p>Tell your partner your 30-day commitment out loud. Accountability partners optional — exchange contact info if interested.</p>
+            </div>
+            <div class="activity-box activity-online">
+              <div class="activity-header"><div class="activity-icon">💻</div><div class="activity-title">Online (Teams) + Padlet</div></div>
+              <p>Post your 30-day commitment on Padlet. Facilitators will read a selection aloud to bring online and in-person together for the close.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">
+            <div class="block-label-text">Q&amp;A (4 min)</div>
+            <div class="block-label-line"></div>
+          </div>
+          <div class="facilitator-note">
+            <div class="note-label">🎤 Q&amp;A Facilitation Tips</div>
+            <ul>
+              <li>Designate one facilitator to watch Teams chat for online questions throughout — surface them during Q&amp;A.</li>
+              <li>If no questions come immediately: "Here's one we often get — [use a common prompt engineering question]."</li>
+              <li>Common questions to prep for: "What about copyright?", "Can I use this in our LMS?", "What if my org doesn't allow AI tools yet?", "What other AI tools work with PACE beyond CoPilot?"</li>
+              <li>Close with a moment of appreciation: "Thank you for bringing your work into this space today."</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────── RESOURCES ──────────────────────────────────── -->
+  <div id="tab-resources" class="section">
+    <h2 class="section-heading">Resources &amp; Prompt Templates</h2>
+    <p class="section-intro">Distribute these to all participants at the close of the session. Designed as a take-home reference for implementing PACE in their own workflow using Microsoft CoPilot and Microsoft 365.</p>
+
+    <div class="resource-grid">
+      <div class="resource-card">
+        <h4>🖼 Visual Asset Prompt Template</h4>
+        <p style="font-size:13px;color:var(--text-mid);margin-bottom:6px;">CoPilot → PowerPoint design brief</p>
+        <code>You are an instructional designer and visual design consultant. Create a design brief for a [ASSET TYPE] on the topic of [TOPIC]. The audience is [AUDIENCE DESCRIPTION]. The tone should be [TONE]. Include: suggested layout, color palette (3 colors), typography style, key icons or visuals, and main headline text. Format the output for use in Microsoft PowerPoint.</code>
+      </div>
+      <div class="resource-card">
+        <h4>📄 Facilitator Guide Prompt</h4>
+        <code>You are an instructional designer. Write a facilitator guide intro for a [DURATION]-minute session on [TOPIC] for [AUDIENCE]. Include: a welcome statement, session goals (3 bullets), a warm-up discussion question, and timing guidance. Tone: professional and encouraging.</code>
+      </div>
+      <div class="resource-card">
+        <h4>🎙 Podcast Script Prompt</h4>
+        <code>You are a podcast producer for a professional development series. Write a 90-second intro script for an episode titled "[EPISODE TITLE]." The host is [HOST DESCRIPTION]. The episode is for [AUDIENCE]. Start with an attention-grabbing hook. End with a preview of what listeners will learn. Tone: [TONE].</code>
+      </div>
+      <div class="resource-card">
+        <h4>🎬 Video Script Prompt</h4>
+        <code>You are a video scriptwriter for corporate learning. Write a [DURATION]-second explainer video script about [TOPIC] for [AUDIENCE]. Include: Scene 1 — hook/problem (15 sec), Scene 2 — key insight (30 sec), Scene 3 — application example (25 sec), Scene 4 — call to action (10 sec). Tone: [TONE].</code>
+      </div>
+      <div class="resource-card">
+        <h4>🔍 Human Review Checklist</h4>
+        <ul>
+          <li>✅ Factual accuracy verified against a trusted source</li>
+          <li>✅ Aligns with stated learning objective(s)</li>
+          <li>✅ Reflects organizational voice and brand</li>
+          <li>✅ No PII, confidential, or inappropriate content</li>
+          <li>✅ Accessible language (aim for 8th grade reading level)</li>
+          <li>✅ Inclusive and culturally appropriate</li>
+          <li>✅ Copyright-clear (no verbatim lifted text)</li>
+          <li>✅ Meets your org's AI disclosure policy</li>
+        </ul>
+      </div>
+      <div class="resource-card">
+        <h4>🛠 Tools Reference</h4>
+        <ul>
+          <li><strong>Microsoft CoPilot:</strong> Integrated with Microsoft 365 (Teams, Word, PowerPoint)</li>
+          <li><strong>PACE Framework:</strong> Built in this session — yours to keep</li>
+          <li><strong>RTCF Prompt Structure:</strong> Role · Task · Context · Format</li>
+          <li><strong>ATD AI Resources:</strong> td.org/topic/artificial-intelligence</li>
+          <li><strong>Padlet:</strong> <a href="https://padlet.com/kmcclure76/atd-sc-80th-year-celebration-g9zkafwndiyn1xvk" target="_blank" style="color:var(--teal);">Session Collaboration Board</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pace-full">
+      <h3>Take-Home: The PACE Framework Card</h3>
+      <div class="pace-rows">
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-p)">P</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Purpose — Define Before You Design</h4>
+            <p>Clarify the learning need. Understand your audience. Apply AI governance principles. Ask: Is AI the right tool for this asset? What are the guardrails? Are you working within your organization's approved AI framework?</p>
+          </div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-a)">A</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Augment — Prompt with Specificity</h4>
+            <p>Use RTCF (Role, Task, Context, Format). What you put in is what you get out. Iterate 2–3 times. Use CoPilot for content, Microsoft 365 for design. AI accelerates — you direct.</p>
+          </div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-c)">C</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Curate — Human Review Always</h4>
+            <p>Review for accuracy, alignment, tone, and inclusion. Edit until it sounds like you. Run the Human Review Checklist. You are the author — AI is the collaborator.</p>
+          </div>
+        </div>
+        <div class="pace-row">
+          <div class="pace-row-letter" style="color:var(--pace-e)">E</div>
+          <div class="pace-row-content">
+            <h4 style="color:var(--gold-light)">Embed — Integrate into Your Workflow</h4>
+            <p>Map PACE to your existing ADDIE/SAM process. Build reusable prompt templates. Document your workflow. Scale across your team. Make AI-assisted design your new standard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main-wrap -->
+
+<script>
+  const tabs = ['tab-overview','tab-module1','tab-module2','tab-module3','tab-wrapup','tab-resources'];
+
+  function showTab(name, btn) {
+    const tabMap = { overview:0, module1:1, module2:2, module3:3, wrapup:4, resources:5 };
+    const idx = tabMap[name];
+    tabs.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('visible', i === idx);
+    });
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
